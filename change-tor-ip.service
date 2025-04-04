@@ -1,0 +1,12 @@
+[Unit]
+Description=Change Tor IP Address every 10 seconds
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/anil/change_tor_ip.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
