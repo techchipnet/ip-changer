@@ -46,7 +46,7 @@ sudo ./ip-changer.sh
 ```
 
 4. Follow the on-screen instructions to set your desired IP change interval.
-## Installation
+## Setup for service
 
 1. Clone the repository:
 ```bash
@@ -56,12 +56,12 @@ cd ip-changer
 
 2. Make the installation script executable:
 ```bash
-chmod +x install.sh
+chmod +x setup.sh
 ```
 
 3. Run the installation script:
 ```bash
-./install.sh
+./setup.sh
 ```
 
 4. Follow the on-screen instructions to set your desired IP change interval.
