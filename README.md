@@ -104,6 +104,8 @@ To remove the IP Changer:
 ```bash
 sudo systemctl stop change-tor-ip.service
 sudo systemctl disable change-tor-ip.service
+sudo systemctl stop tor
+sudo systemctl disable tor
 sudo rm /etc/systemd/system/change-tor-ip.service
 sudo rm /home/$USER/change_tor_ip.sh
 ```
