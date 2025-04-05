@@ -96,7 +96,7 @@ echo -e "${BLUE}[*] Deploying files...${NC}"
 INSTALL_DIR="/home/$USER"
 sudo cp change_tor_ip.sh "$INSTALL_DIR/"
 sudo chmod +x "$INSTALL_DIR/change_tor_ip.sh"
-
+sed -i "s|^ExecStart=.*|ExecStart=${INSTALL_DIR}/change_tor_ip.sh|" change-tor-ip.service
 sudo cp change-tor-ip.service /etc/systemd/system/
 
 echo -e "${BLUE}[*] Enabling and starting service...${NC}"
