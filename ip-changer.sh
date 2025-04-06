@@ -22,7 +22,7 @@ echo -e "${YELLOW}=========================================================${NC}
 
 set -e
 [[ "$UID" -ne 0 ]] && {
-    echo -e "${RED}❌ Script must be run as root.${NC}"
+    echo -e "${RED}❌ Please run this script as root.${NC}"
     exit 1
 }
 
@@ -67,8 +67,13 @@ setup() {
         sudo groupadd "$TOR_GROUP"
     fi
 
-    echo -e "${BLUE}[*] Adding user '$USER' to group '$TOR_GROUP'...${NC}"
-    sudo usermod -aG "$TOR_GROUP" "$USER"
+    if ! groups "$USER" | grep -q " $TOR_GROUP"; then
+        echo -e "${BLUE}[*] Adding user '$USER' to group '$TOR_GROUP'...${NC}"
+        sudo usermod -aG "$TOR_GROUP" "$USER"
+    else
+        echo -e "${GREEN}[✓] User '$USER' is already a member of group '$TOR_GROUP'.${NC}"
+    fi
+
 
     echo -e "${BLUE}[*] Configuring Tor...${NC}"
     TORRC_FILE="/etc/tor/torrc"
