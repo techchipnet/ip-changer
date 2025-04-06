@@ -95,6 +95,7 @@ sed -i "s/RestartSec=.*/RestartSec=$TIME_INTERVAL/" change-tor-ip.service
 echo -e "${BLUE}[*] Deploying files...${NC}"
 INSTALL_DIR="/home/$USER"
 sudo cp change_tor_ip.sh "$INSTALL_DIR/"
+sed -i "s#HOME#$INSTALL_DIR#g" "$INSTALL_DIR/change_tor_ip.sh"
 sudo chmod +x "$INSTALL_DIR/change_tor_ip.sh"
 sed -i "s|^ExecStart=.*|ExecStart=${INSTALL_DIR}/change_tor_ip.sh|" change-tor-ip.service
 sudo cp change-tor-ip.service /etc/systemd/system/
