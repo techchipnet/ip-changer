@@ -61,8 +61,12 @@ if ! getent group "$TOR_GROUP" >/dev/null; then
     sudo groupadd "$TOR_GROUP"
 fi
 
-echo -e "${BLUE}[*] Adding user '$USER' to group '$TOR_GROUP'...${NC}"
-sudo usermod -aG "$TOR_GROUP" "$USER"
+if ! groups "$USER" | grep -q " $TOR_GROUP"; then
+    echo -e "${BLUE}[*] Adding user '$USER' to group '$TOR_GROUP'...${NC}"
+    sudo usermod -aG "$TOR_GROUP" "$USER"
+else
+    echo -e "${GREEN}[✓] User '$USER' is already a member of group '$TOR_GROUP'.${NC}"
+fi
 
 echo -e "${BLUE}[*] Configuring Tor...${NC}"
 TORRC_FILE="/etc/tor/torrc"
