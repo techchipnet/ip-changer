@@ -8,4 +8,4 @@ printf 'AUTHENTICATE %s\r\nSIGNAL NEWNYM\r\nQUIT\r\n' "$COOKIE" | nc 127.0.0.1 9
 
 # Store IP logs
 IP=$(curl -s --socks5-hostname 127.0.0.1:9050 https://check.torproject.org/api/ip | jq -r .IP)
-echo "$(date '+%Y-%m-%d %H:%M:%S') - New Tor IP: $IP" >> /home/anil/tor_ip_log.txt
+echo "$(date '+%Y-%m-%d %H:%M:%S') - New Tor IP: $IP" >> HOME/tor_ip_log.txt
